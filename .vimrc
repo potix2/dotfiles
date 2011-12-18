@@ -205,7 +205,7 @@ nnoremap <silent> <Leader>md :!mkdir -p %:p:h<CR>
 nnoremap <silent> <Leader>bd :bd<CR>
 
 nnoremap <C-j> <C-^>
-nnoremap <silent> <C-u><C-l> :Unite file file_mru buffer<CR>
+nnoremap <silent> <Leader><C-u><C-l> :Unite file file_mru buffer<CR>
 nnoremap <Leader>w :<C-u>call <SID>HandleURI()<CR>
 
 " vimrc

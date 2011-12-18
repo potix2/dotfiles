@@ -193,6 +193,13 @@ let g:syntastic_auto_loc_list = 2
 
 " for Unite {
 let g:unite_enable_start_insert = 1
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+    nmap <buffer> <C-g><C-g> <Plug>(unite_exit)
+    imap <buffer> <C-g><C-g> <Plug>(unite_exit)
+    nmap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
+    imap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
+endfunction
 " }
 
 if has("gui_running")
@@ -205,7 +212,7 @@ nnoremap <silent> <Leader>md :!mkdir -p %:p:h<CR>
 nnoremap <silent> <Leader>bd :bd<CR>
 
 nnoremap <C-j> <C-^>
-nnoremap <silent> <Leader><C-u><C-l> :Unite file file_mru buffer<CR>
+nnoremap <silent> <Leader>uf :Unite file file_mru buffer bookmark<CR>
 nnoremap <Leader>w :<C-u>call <SID>HandleURI()<CR>
 
 " vimrc

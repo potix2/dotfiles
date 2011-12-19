@@ -44,6 +44,10 @@ set history=100
 set number
 " set relativenumber
 
+set foldenable
+set foldmarker={,}
+set foldmethod=marker
+set foldlevel=99
 set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 set grepprg=grep\ -nH\ $*
@@ -82,6 +86,7 @@ Bundle 'tyru/restart.vim'
 Bundle 'tyru/caw.vim'
 Bundle "scrooloose/syntastic"
 Bundle 'potix2/vim-mysqlrun'
+Bundle 'potix2/vim-redmine'
 Bundle 'oppara/vim-unite-cake'
 
 "vim.org
@@ -202,11 +207,17 @@ function! s:unite_my_settings()
 endfunction
 " }
 
+" for vim-redmine {
+if filereadable(expand('~/.vim/redmine.vim'))
+    source ~/.vim/redmine.vim
+endif
+
 if has("gui_running")
     set guifont=Inconsolata:h14
 endif
 
 " setup mapping {
+nnoremap <C-m> 20j
 nnoremap <silent> <Leader>cd :lcd %:h<CR>
 nnoremap <silent> <Leader>md :!mkdir -p %:p:h<CR>
 nnoremap <silent> <Leader>bd :bd<CR>
@@ -218,9 +229,6 @@ nnoremap <Leader>w :<C-u>call <SID>HandleURI()<CR>
 " vimrc
 nnoremap <silent> <Leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <Leader>sv :so $MYVIMRC<CR>
-
-" for caw
-noremap <silent> <Leader>cc <Plug>(caw:i:comment)
 
 imap jj <ESC>
 

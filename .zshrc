@@ -1,11 +1,25 @@
+autoload colors
+colors
+setopt auto_pushd
+setopt noautoremoveslash
+bindkey -e
 autoload -U compinit
 compinit
-PROMPT="%/%% "
+PROMPT='%39<...<%/%% '
 PROMPT2="%_%% "
 SPROMPT="%r is correct? [n,y,a,e]: "
 
-alias ls="ls -G"
 export LSCOLORS=dxfxcxdxbxegedabagacad
-export PATH=/usr/local/bin:/Users/potix2/bin:/Applications/MAMP/Library/bin:$PATH
-export LANG=ja_JP.UTF-8
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
+alias ls='ls -G -w'
+alias la='ls -a'
+alias lf='ls -F'
+alias ll='ls -l'
+alias f='open'
+alias github='open https://github.com'
+alias gist='open https://gist.github.com/mine'
+alias screen=/usr/local/bin/screen
+
+if [ -f $HOME/.local.zshrc ]; then
+    source $HOME/.local.zshrc
+fi

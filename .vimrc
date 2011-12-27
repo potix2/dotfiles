@@ -89,12 +89,13 @@ Bundle 'tyru/open-browser.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'potix2/vim-mysqlrun'
 Bundle 'violetyk/cake.vim'
+Bundle 'kana/vim-metarw'
+Bundle 'ujihisa/blogger.vim'
+Bundle 'hallison/vim-markdown'
+Bundle 'godlygeek/tabular'
 
 "vim.org
 Bundle 'sudo.vim'
-"Bundle 'Simple-Javascript-Indenter'
-"Bundle 'JavaScript-syntax'
-" }
 " }
 
 filetype plugin on
@@ -191,12 +192,24 @@ let g:syntastic_auto_loc_list = 2
 let g:unite_enable_start_insert = 1
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
-    nmap <buffer> <ESC> <Plug>(unite_exit)
+    nmap <buffer> jj <Plug>(unite_exit)
     imap <buffer> jj <Plug>(unite_exit)
     nmap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
     imap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
 endfunction
 " }
+
+" for vim-redmine {
+if filereadable(expand('~/.vim/redmine.vim'))
+    source ~/.vim/redmine.vim
+endif
+"}
+
+" for blogger {
+if filereadable(expand('~/.vim/blogger.vim'))
+    source ~/.vim/blogger.vim
+endif
+"}
 
 if has("gui_running")
     set guifont=Inconsolata:h14
@@ -218,14 +231,21 @@ nnoremap <silent> <Leader>sv :so $MYVIMRC<CR>
 
 imap jj <ESC>
 
-" for codeforeces
+" for codeforeces {{{
 nnoremap <C-l> :make %:r
 nnoremap <C-l><C-l> :!./%:r
+" }}}
 
-" for mysqlrun
+" for mysqlrun {{{
 noremap <Leader>mr :MySQLRun
 " 
 
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
 endif
+" }}}
+
+nmap <Leader>t= :Tabularize /=<CR>
+vmap <Leader>t= :Tabularize /=<CR>
+nmap <Leader>t: :Tabularize /:\zs<CR>
+vmap <Leader>t: :Tabularize /:\zs<CR>

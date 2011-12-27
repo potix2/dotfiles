@@ -77,6 +77,7 @@ Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
@@ -84,10 +85,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tyru/restart.vim'
 Bundle 'tyru/caw.vim'
-Bundle "scrooloose/syntastic"
+Bundle 'tyru/open-browser.vim'
+Bundle 'scrooloose/syntastic'
 Bundle 'potix2/vim-mysqlrun'
-Bundle 'potix2/vim-redmine'
-Bundle 'oppara/vim-unite-cake'
+Bundle 'violetyk/cake.vim'
 
 "vim.org
 Bundle 'sudo.vim'
@@ -146,16 +147,6 @@ if filereadable(expand('~/.vimrc.mysqlrun'))
 endif
 " }
 
-function! s:HandleURI()"{{{
-    let uri = matchstr(getline("."),'[a-z]*:\/\/[^>,;:]*')
-    echo uri
-    if uri != ""
-        exec "!open \"" . uri . "\""
-    else
-        echo "No URI found in line."
-    endif
-endfunction"}}}
-
 " setup tabline {
 function! s:tabpage_label(n)"{{{
     let title = gettabvar(a:n, 'title')
@@ -200,17 +191,12 @@ let g:syntastic_auto_loc_list = 2
 let g:unite_enable_start_insert = 1
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
-    nmap <buffer> <C-g><C-g> <Plug>(unite_exit)
-    imap <buffer> <C-g><C-g> <Plug>(unite_exit)
+    nmap <buffer> <ESC> <Plug>(unite_exit)
+    imap <buffer> jj <Plug>(unite_exit)
     nmap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
     imap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
 endfunction
 " }
-
-" for vim-redmine {
-if filereadable(expand('~/.vim/redmine.vim'))
-    source ~/.vim/redmine.vim
-endif
 
 if has("gui_running")
     set guifont=Inconsolata:h14
@@ -224,7 +210,7 @@ nnoremap <silent> <Leader>bd :bd<CR>
 
 nnoremap <C-j> <C-^>
 nnoremap <silent> <Leader>uf :Unite file file_mru buffer bookmark<CR>
-nnoremap <Leader>w :<C-u>call <SID>HandleURI()<CR>
+nmap <Leader>w <Plug>(openbrowser-smart-search)
 
 " vimrc
 nnoremap <silent> <Leader>ev :e $MYVIMRC<CR>
@@ -239,3 +225,7 @@ nnoremap <C-l><C-l> :!./%:r
 " for mysqlrun
 noremap <Leader>mr :MySQLRun
 " 
+
+if filereadable(expand('~/.local.vim'))
+    source ~/.local.vim
+endif

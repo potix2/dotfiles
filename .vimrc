@@ -90,6 +90,7 @@ Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
@@ -97,6 +98,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tyru/restart.vim'
 Bundle 'tyru/caw.vim'
+Bundle 'tyru/open-browser.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'potix2/vim-mysqlrun'
 Bundle 'kana/vim-metarw'
@@ -298,6 +300,10 @@ if filereadable(expand('~/.vimrc.mysqlrun'))
 endif
 noremap <Leader>mr :MySQLRun
 
+if filereadable(expand('~/.local.vim'))
+    source ~/.local.vim
+endif
+
 " Tabularize.vim {{{2
 nmap <Leader>t= :Tabularize /=<CR>
 vmap <Leader>t= :Tabularize /=<CR>
@@ -331,5 +337,3 @@ let g:syntastic_auto_loc_list = 2
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
 endif
-
-

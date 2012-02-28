@@ -386,3 +386,8 @@ let g:syntastic_auto_loc_list = 2
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
 endif
+
+" load project settings
+if filereadable('.project.vim')
+    source .project.vim
+endif

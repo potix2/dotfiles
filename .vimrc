@@ -382,6 +382,10 @@ endif
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 2
 
+" caw {{2
+let g:caw_no_default_keymappings = 1
+map <silent> <Leader>cc <Plug>(caw:i:toggle)
+
 " local settings {{{1
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim

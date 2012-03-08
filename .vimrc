@@ -196,10 +196,31 @@ augroup MyAutoPHPCmd
 augroup END
 let g:ref_phpmanual_path = $HOME . '/manuals/php'
 
+" for phpunit {{2
+augroup QuickRunPHPUnit
+    autocmd!
+    autocmd BufWinEnter,BufNewFile test*.php set filetype=php.unit
+augroup END
+
 " for make {{2
 augroup AutoMakeCmd
     autocmd!
     autocmd FileType make setlocal noexpandtab
+augroup END
+
+" for ruby {{2
+augroup MyRubyCmd
+    autocmd!
+    autocmd FileType ruby set tabstop=2
+    autocmd FileType ruby set softtabstop=2
+    autocmd FileType ruby set shiftwidth=2
+augroup END
+
+" for json {{2
+augroup MyJsonCmd
+    autocmd!
+    autocmd BufWinEnter,BufNewFile *.json set filetype=json
+    autocmd FileType json vmap <Leader>f !python -m json.tool<CR>
 augroup END
 
 " setup tabline {{2
@@ -394,6 +415,29 @@ endfunction
 
 call quickrun#register_outputter("compile", compile)
 
+" for phpunit {{{3
+let phpunit_outputter = quickrun#outputter#buffer#new()
+function! phpunit_outputter.init(session)
+    call call(quickrun#outputter#buffer#new().init, [a:session],self)
+endfunction
+
+function! phpunit_outputter.finish(session)
+    highlight default PhpUnitOK     ctermbg=Green ctermfg=White
+    highlight default PhpUnitFail   ctermbg=Red ctermfg=White
+    highlight default PhpUnitAssertFail   ctermbg=Red
+    call matchadd("PhpUnitFail", "^FAILURES.*$")
+    call matchadd("PhpUnitOK", "^OK.*$")
+    call matchadd("PhpUnitAssertFail", "^Failed.*$")
+    call call(quickrun#outputter#buffer#new().finish, [a:session], self)
+endfunction
+
+call quickrun#register_outputter("phpunit_outputter", phpunit_outputter)
+let g:phpunit_path = 'phpunit'
+let g:quickrun_config['php.unit'] = {
+            \ 'command': g:phpunit_path,
+            \ 'outputter': 'phpunit_outputter',
+            \ }
+
 " blogger.vim {{2
 if filereadable(expand('~/.vim/blogger.vim'))
     source ~/.vim/blogger.vim
@@ -416,4 +460,9 @@ map <silent> <Leader>cc <Plug>(caw:i:toggle)
 " local settings {{{1
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
+endif
+
+" load project settings
+if filereadable('.project.vim')
+    source .project.vim
 endif

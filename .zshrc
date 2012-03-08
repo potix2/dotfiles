@@ -10,15 +10,21 @@ PROMPT2="%_%% "
 SPROMPT="%r is correct? [n,y,a,e]: "
 
 export LSCOLORS=dxfxcxdxbxegedabagacad
-
 alias ls='ls -G -w'
-alias la='ls -a'
-alias lf='ls -F'
-alias ll='ls -l'
-alias f='open'
-alias github='open https://github.com'
-alias gist='open https://gist.github.com/mine'
-alias screen=/usr/local/bin/screen
+
+if [ -x "`which open 2> /dev/null`" ]; then
+    alias github='open https://github.com'
+    alias gist='open https://gist.github.com/mine'
+fi
+
+if [ -f /usr/local/bin/screen ]; then
+    alias screen=/usr/local/bin/screen
+fi
+
+if [ ! -d $HOME/.screen ]; then
+    mkdir -m 700 $HOME/.screen
+fi
+export SCREENDIR="$HOME/.screen"
 
 if [ -f $HOME/.local.zshrc ]; then
     source $HOME/.local.zshrc

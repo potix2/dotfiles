@@ -96,19 +96,24 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-abolish'
 Bundle 'tyru/restart.vim'
 Bundle 'tyru/caw.vim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'potix2/vim-mysqlrun'
 Bundle 'kana/vim-metarw'
+Bundle 'kana/vim-vspec'
+Bundle 'kana/mduem'
 Bundle 'ujihisa/blogger.vim'
+"Bundle 'ujihisa/neco-ghc'
 Bundle 'hallison/vim-markdown'
 Bundle 'godlygeek/tabular'
 Bundle 'jcf/rvm_ruby.vim'
 Bundle 'mfumi/ProjectEuler.vim'
 Bundle 'eagletmt/onlinejudge-vim'
 Bundle 'violetyk/cake.vim'
+Bundle 'ecomba/vim-ruby-refactoring'
 
 "vim.org
 Bundle 'sudo.vim'
@@ -366,6 +371,28 @@ function! MakeMySQLCommandOptions()
     return join(optlist, ' ') 
 endfunction
 noremap <silent> <Leader>qs :QuickRun sql<CR>
+
+" for cpp {{{3
+let g:quickrun_config['cpp'] = {
+    \ "type": "cpp",
+    \ "command": "g++",
+    \ "cmdopt": "-Wall",
+    \ "outputter": "compile"
+    \ }
+
+let compile = quickrun#outputter#multi#new()
+let compile.config.targets = ["buffer", "quickfix"]
+function! compile.init(session)
+    :cclose
+    call call(quickrun#outputter#multi#new().init, [a:session], self)
+endfunction
+
+function! compile.finish(session)
+    call call(quickrun#outputter#multi#new().finish, [a:session], self)
+"    bwipeout [quickrun
+endfunction
+
+call quickrun#register_outputter("compile", compile)
 
 " blogger.vim {{2
 if filereadable(expand('~/.vim/blogger.vim'))

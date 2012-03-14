@@ -29,3 +29,13 @@ export SCREENDIR="$HOME/.screen"
 if [ -f $HOME/.local.zshrc ]; then
     source $HOME/.local.zshrc
 fi
+
+function lw2lu {
+    nkf -Lu $1 > $1.tmp
+    mv $1.tmp $1
+}
+
+function lu2lw {
+    nkf -Lw $1 > $1.tmp
+    mv $1.tmp $1
+}

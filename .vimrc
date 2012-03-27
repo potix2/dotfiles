@@ -102,6 +102,7 @@ Bundle 'tyru/caw.vim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'potix2/vim-mysqlrun'
+Bundle 'potix2/vim-phprefactor'
 Bundle 'kana/vim-metarw'
 Bundle 'kana/vim-vspec'
 Bundle 'kana/mduem'
@@ -211,9 +212,12 @@ augroup END
 " for ruby {{2
 augroup MyRubyCmd
     autocmd!
+    autocmd BufWinEnter,BufNewFile *.gemspec set filetype=ruby
     autocmd FileType ruby set tabstop=2
     autocmd FileType ruby set softtabstop=2
     autocmd FileType ruby set shiftwidth=2
+
+    autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
 
 " for json {{2
@@ -300,7 +304,11 @@ function! s:unite_my_settings()
     nmap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
     imap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
 endfunction
-nnoremap <silent> <Leader>uf :Unite file file_mru buffer bookmark<CR>
+nnoremap <silent> <Leader>uf :Unite buffer file file_mru<CR>
+nnoremap <silent> <Leader>um :Unite buffer file_mru<CR>
+nnoremap <silent> <Leader>ur :UniteResume<CR>
+nnoremap <silent> <Leader>ub :Unite buffer<CR>
+nnoremap <silent> <Leader>ug :Unite grep<CR><CR>
 
 " vim-redmine {{2
 if filereadable(expand('~/.vim/redmine.vim'))
@@ -437,6 +445,11 @@ let g:quickrun_config['php.unit'] = {
             \ 'command': g:phpunit_path,
             \ 'outputter': 'phpunit_outputter',
             \ }
+
+" for rspec {{{3
+let g:quickrun_config['ruby.rspec'] = {
+      \ 'command': 'rspec',
+      \ }
 
 " blogger.vim {{2
 if filereadable(expand('~/.vim/blogger.vim'))

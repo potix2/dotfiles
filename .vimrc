@@ -102,8 +102,9 @@ Bundle 'tyru/caw.vim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'potix2/vim-mysqlrun'
+Bundle 'potix2/vim-phprefactor'
 Bundle 'kana/vim-metarw'
-Bundle 'kana/vim-vspec'
+"Bundle 'kana/vim-vspec'
 Bundle 'kana/mduem'
 Bundle 'ujihisa/blogger.vim'
 "Bundle 'ujihisa/neco-ghc'
@@ -160,6 +161,18 @@ function! GetFileSize()
     let size = size / 1024
   endfor
   return size . 'GB'
+endfunction
+
+function! Separate()
+    let line = getline('.')
+    let len = strlen(line)
+    let pos = 0
+    normal dd
+    while pos < len
+        call append(line('.'), "+ '" . strpart(line, pos, 40) . "'")
+        normal j
+        let pos += 40
+    endwhile
 endfunction
 
 " Backup.
@@ -432,7 +445,11 @@ function! phpunit_outputter.finish(session)
 endfunction
 
 call quickrun#register_outputter("phpunit_outputter", phpunit_outputter)
-let g:phpunit_path = 'phpunit'
+if filereadable("/Applications/MAMP/bin/php5.2/bin/phpunit")
+    let g:phpunit_path = '/Applications/MAMP/bin/php5.2/bin/phpunit'
+else
+    let g:phpunit_path = 'phpunit'
+endif
 let g:quickrun_config['php.unit'] = {
             \ 'command': g:phpunit_path,
             \ 'outputter': 'phpunit_outputter',

@@ -11,6 +11,7 @@ SPROMPT="%r is correct? [n,y,a,e]: "
 
 export LSCOLORS=dxfxcxdxbxegedabagacad
 alias ls='ls -G -w'
+alias vspec='vspec . $HOME/.vim/'
 
 if [ -x "`which open 2> /dev/null`" ]; then
     alias github='open https://github.com'

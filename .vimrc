@@ -212,7 +212,7 @@ let g:ref_phpmanual_path = $HOME . '/manuals/php'
 " for phpunit {{2
 augroup QuickRunPHPUnit
     autocmd!
-    autocmd BufWinEnter,BufNewFile test*.php set filetype=php.unit
+    autocmd BufWinEnter,BufNewFile *Test.php set filetype=php.unit
 augroup END
 
 " for make {{2
@@ -452,11 +452,7 @@ function! phpunit_outputter.finish(session)
 endfunction
 
 call quickrun#register_outputter("phpunit_outputter", phpunit_outputter)
-if filereadable("/Applications/MAMP/bin/php5.2/bin/phpunit")
-    let g:phpunit_path = '/Applications/MAMP/bin/php5.2/bin/phpunit'
-else
-    let g:phpunit_path = 'phpunit'
-endif
+let g:phpunit_path = 'phpunit'
 let g:quickrun_config['php.unit'] = {
             \ 'command': g:phpunit_path,
             \ 'outputter': 'phpunit_outputter',

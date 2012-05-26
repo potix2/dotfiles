@@ -102,7 +102,7 @@ Bundle 'tyru/caw.vim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'potix2/vim-mysqlrun'
-Bundle 'potix2/vim-phprefactor'
+" Bundle 'potix2/vim-phprefactor'
 Bundle 'kana/vim-metarw'
 "Bundle 'kana/vim-vspec'
 Bundle 'kana/mduem'
@@ -115,6 +115,7 @@ Bundle 'mfumi/ProjectEuler.vim'
 Bundle 'eagletmt/onlinejudge-vim'
 Bundle 'violetyk/cake.vim'
 Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'jondistad/vimclojure'
 
 "vim.org
 Bundle 'sudo.vim'
@@ -482,10 +483,22 @@ let g:syntastic_auto_loc_list = 2
 let g:caw_no_default_keymappings = 1
 map <silent> <Leader>cc <Plug>(caw:i:toggle)
 
+" vimclojure {{2
+let g:clj_highlight_builtins = 1
+let g:clj_paren_rainbow = 1
+let g:clj_highlight_contrib = 1
+let g:clj_dynamic_highlighting = 1
+let vimclojure#WantNailgun=1
+let vimclojure#NailgunClient="ng"
+
 " local settings {{{1
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
 endif
+augroup vim-clojure
+    autocmd!
+    autocmd BufRead,BufNewFile *.clj nmap ,el <Plug>ClojureEvalToplevel
+augroup end
 
 " load project settings
 if filereadable('.project.vim')

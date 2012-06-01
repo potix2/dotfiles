@@ -116,11 +116,11 @@ Bundle 'eagletmt/onlinejudge-vim'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'violetyk/cake.vim'
 Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'jondistad/vimclojure'
 
 "vim.org
 Bundle 'sudo.vim'
 Bundle 'taglist.vim'
+Bundle 'VimClojure'
 " }
 " }
 
@@ -485,10 +485,10 @@ let g:caw_no_default_keymappings = 1
 map <silent> <Leader>cc <Plug>(caw:i:toggle)
 
 " vimclojure {{2
-let g:clj_highlight_builtins = 1
-let g:clj_paren_rainbow = 1
-let g:clj_highlight_contrib = 1
-let g:clj_dynamic_highlighting = 1
+let vimclojure#HighlightBuiltins = 1
+let vimclojure#HighlightContrib = 1
+let vimclojure#DynamicHighlighting = 1
+let vimclojure#ParenRainbow= 1
 let vimclojure#WantNailgun=1
 let vimclojure#NailgunClient="ng"
 

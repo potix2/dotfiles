@@ -54,3 +54,22 @@ precmd() {
 }
 
 RPROMPT="[%~] %1(v|%F{green}%1v%f|)"
+
+#setup path
+if [ -d $HOME/bin ]; then
+    PATH=$HOME/bin:$PATH
+fi
+
+if [ -d $HOME/.cabal/bin ]; then
+    PATH=$HOME/.cabal/bin:$PATH
+fi
+
+if [ -d /usr/local/bin ]; then
+    PATH=/usr/local/bin:$PATH
+fi
+
+if [ -d /usr/local/sbin ]; then
+    PATH=/usr/local/sbin:$PATH
+fi
+[ -z "$path" ] && typeset -T PATH path
+typeset -U path

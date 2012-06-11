@@ -66,6 +66,7 @@ set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
 
 set grepprg=grep\ -nH\ $*
 let mapleader = ","
+let g:maplocalleader = ","
 
 " Tell vim to remember certain things when we exit
 "  '10 : marks will be remembered for up to 10 previously edited files
@@ -486,21 +487,18 @@ let g:caw_no_default_keymappings = 1
 map <silent> <Leader>cc <Plug>(caw:i:toggle)
 
 " vimclojure {{2
-let vimclojure#HighlightBuiltins = 1
-let vimclojure#HighlightContrib = 1
-let vimclojure#DynamicHighlighting = 1
-let vimclojure#ParenRainbow= 1
-let vimclojure#WantNailgun=1
-let vimclojure#NailgunClient="ng"
+let g:clj_highlight_builtins = 1
+let g:clj_highlight_contrib = 1
+let g:clj_dynamic_hilighting = 1
+let g:clj_paren_rainbow = 1
+let g:clj_want_gorilla = 1
+let vimclojure#WantNailgun = 1
+let vimclojure#NailgunClient = "/usr/local/bin/ng"
 
 " local settings {{{1
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
 endif
-augroup vim-clojure
-    autocmd!
-    autocmd BufRead,BufNewFile *.clj nmap ,el <Plug>ClojureEvalToplevel
-augroup end
 
 " load project settings
 if filereadable('.project.vim')

@@ -25,6 +25,7 @@ set ruler
 set nohls
 set incsearch
 set clipboard+=unnamed
+set hidden
 
 " Make command line two lines high
 set ch=2

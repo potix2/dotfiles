@@ -16,11 +16,9 @@ SPROMPT="%r is correct? [n,y,a,e]: "
 export LSCOLORS=dxfxcxdxbxegedabagacad
 alias ls='ls -G -w'
 alias vspec='vspec . $HOME/.vim/'
-
-if [ -x "`which open 2> /dev/null`" ]; then
-    alias github='open https://github.com'
-    alias gist='open https://gist.github.com/mine'
-fi
+alias gst='git status'
+alias gdi='git diff'
+alias gci='git commit -a'
 
 if [ -f /usr/local/bin/screen ]; then
     alias screen=/usr/local/bin/screen

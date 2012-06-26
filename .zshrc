@@ -14,11 +14,28 @@ PROMPT2="%_%% "
 SPROMPT="%r is correct? [n,y,a,e]: "
 
 export LSCOLORS=dxfxcxdxbxegedabagacad
+
+# aliases
 alias ls='ls -G -w'
 alias vspec='vspec . $HOME/.vim/'
+alias v='vim'
+
+# aliases for git
+alias g='git'
+alias ga='git add'
 alias gst='git status'
 alias gdi='git diff'
 alias gci='git commit -a'
+
+# aliases for tmux
+alias t='tmux'
+alias ta='tmux attach'
+
+# aliases for zsh
+alias ze='v ~/.zshrc'
+alias zel='v ~/.local.zshrc'
+alias zs='source ~/.zshrc'
+alias zsl='source ~/.local.zshrc'
 
 if [ -f /usr/local/bin/screen ]; then
     alias screen=/usr/local/bin/screen

@@ -55,6 +55,12 @@ precmd() {
 
 RPROMPT="[%~] %1(v|%F{green}%1v%f|)"
 
+#for php
+export PHP_HOME=$HOME/local/php/versions
+export PHP_VERSIONS=$HOME/local/php/versions
+[ -f $(brew --prefix php-version)/php-version.sh ] &&
+    source $(brew --prefix php-version)/php-version.sh && php-version 5.4.0 > /dev/null
+
 #setup path
 if [ -d $HOME/bin ]; then
     PATH=$HOME/bin:$PATH

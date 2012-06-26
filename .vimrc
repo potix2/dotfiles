@@ -487,11 +487,10 @@ let g:caw_no_default_keymappings = 1
 map <silent> <Leader>cc <Plug>(caw:i:toggle)
 
 " vimclojure {{2
-let g:clj_highlight_builtins = 1
-let g:clj_highlight_contrib = 1
-let g:clj_dynamic_hilighting = 1
-let g:clj_paren_rainbow = 1
-let g:clj_want_gorilla = 1
+let vimclojure#HighlightBuiltins = 1
+let vimclojure#DynamicHilighting = 1
+let vimclojure#ParenRainbow = 1
+let vimclojure#WantGorilla= 1
 let vimclojure#WantNailgun = 1
 let vimclojure#NailgunClient = "/usr/local/bin/ng"
 

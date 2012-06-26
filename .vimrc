@@ -99,6 +99,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-endwise'
 Bundle 'tyru/restart.vim'
 Bundle 'tyru/caw.vim'
 Bundle 'tyru/open-browser.vim'
@@ -229,10 +231,9 @@ augroup END
 augroup MyRubyCmd
     autocmd!
     autocmd BufWinEnter,BufNewFile *.gemspec set filetype=ruby
-    autocmd FileType ruby set tabstop=2
-    autocmd FileType ruby set softtabstop=2
-    autocmd FileType ruby set shiftwidth=2
-
+    autocmd BufWinEnter,BufNewFile Gemfile set filetype=ruby
+    autocmd BufWinEnter,BufNewFile Rakefile set filetype=ruby
+    autocmd FileType ruby set tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
 
@@ -320,8 +321,8 @@ function! s:unite_my_settings()
     nmap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
     imap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
 endfunction
-nnoremap <silent> <Leader>uf :Unite buffer file file_mru<CR>
-nnoremap <silent> <Leader>um :Unite buffer file_mru<CR>
+nnoremap <silent> <Leader>uf :Unite file buffer file_mru<CR>
+nnoremap <silent> <Leader>f :Unite buffer file_mru<CR>
 nnoremap <silent> <Leader>ur :UniteResume<CR>
 nnoremap <silent> <Leader>ub :Unite buffer<CR>
 nnoremap <silent> <Leader>ug :Unite grep<CR><CR>

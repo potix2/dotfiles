@@ -105,7 +105,7 @@ Bundle 'tyru/restart.vim'
 Bundle 'tyru/caw.vim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'scrooloose/syntastic'
-Bundle 'potix2/vim-mysqlrun'
+" Bundle 'potix2/vim-mysqlrun'
 " Bundle 'potix2/vim-phprefactor'
 Bundle 'kana/vim-metarw'
 "Bundle 'kana/vim-vspec'
@@ -125,6 +125,7 @@ Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'sudo.vim'
 Bundle 'taglist.vim'
 Bundle 'VimClojure'
+Bundle 'Wombat'
 " }
 " }
 

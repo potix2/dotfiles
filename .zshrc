@@ -76,6 +76,15 @@ RPROMPT="[%~] %1(v|%F{green}%1v%f|)"
 # [ -f $(brew --prefix php-version)/php-version.sh ] &&
 #     source $(brew --prefix php-version)/php-version.sh && php-version 5.4.0 > /dev/null
 
+#for python
+if [ -d $HOME/.virtualenvs ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+fi
+
+if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
 #setup path
 if [ -d $HOME/bin ]; then
     PATH=$HOME/bin:$PATH

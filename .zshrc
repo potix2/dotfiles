@@ -1,5 +1,10 @@
 autoload colors
 colors
+
+#setup script path
+typeset -U fpath
+fpath=($fpath ~/.zsh.d)
+
 setopt auto_pushd
 setopt noautoremoveslash
 setopt prompt_subst
@@ -7,25 +12,34 @@ autoload -U compinit
 autoload -Uz vcs_info
 bindkey -e
 compinit
-#PROMPT='%39<...<%/%% '
-#PROMPT=$'%{\e[$[32]m%}$USER@%m%%%{\e[m%}%u '
 PROMPT=$'%{[$[36]m%}%U$USER@'"%m%{[m%}%%%u "
 PROMPT2="%_%% "
 SPROMPT="%r is correct? [n,y,a,e]: "
 
+# config history
+HISTFILE=$HOME/.zsh-history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt extended_history
+setopt share_history
+function history-all { history -E 1 }
+
+# setup env
 export LSCOLORS=dxfxcxdxbxegedabagacad
 
 # aliases
 alias ls='ls -G -w'
-alias vspec='vspec . $HOME/.vim/'
 alias v='vim'
 
 # aliases for git
 alias g='git'
 alias ga='git add'
 alias gst='git status'
-alias gdi='git diff'
+alias gdi='git diff --color'
+alias gds='git diff --color --staged'
 alias gci='git commit -a'
+alias gco='git checkout'
+alias glgg='git log --color --graph --decorate --oneline'
 
 # aliases for tmux
 alias t='tmux'
@@ -36,15 +50,6 @@ alias ze='v ~/.zshrc'
 alias zel='v ~/.local.zshrc'
 alias zs='source ~/.zshrc'
 alias zsl='source ~/.local.zshrc'
-
-if [ -f /usr/local/bin/screen ]; then
-    alias screen=/usr/local/bin/screen
-fi
-
-if [ ! -d $HOME/.screen ]; then
-    mkdir -m 700 $HOME/.screen
-fi
-export SCREENDIR="$HOME/.screen"
 
 if [ -f $HOME/.local.zshrc ]; then
     source $HOME/.local.zshrc

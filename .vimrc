@@ -26,6 +26,8 @@ set nohls
 set incsearch
 set clipboard+=unnamed
 set hidden
+set list
+set listchars=tab:>-\,trail:~
 
 " Make command line two lines high
 set ch=2
@@ -202,8 +204,6 @@ if has('persistent_undo')
 endif
 set backupcopy=yes
 
-"call s:mkdir(expand('~/.backup'))
-
 " font settings. {{2
 if has("gui_running")
     set guifont=Inconsolata:h14
@@ -346,13 +346,6 @@ let g:vimfiler_as_default_explorer = 1
 " tags {
 set tags=tags;~/.tags
 
-
-" mysqlrun.vim {{{2
-if filereadable(expand('~/.vimrc.mysqlrun'))
-    source ~/.vimrc.mysqlrun
-endif
-noremap <Leader>mr :MySQLRun
-
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
 endif
@@ -437,7 +430,6 @@ endfunction
 
 function! compile.finish(session)
     call call(quickrun#outputter#multi#new().finish, [a:session], self)
-"    bwipeout [quickrun
 endfunction
 
 call quickrun#register_outputter("compile", compile)

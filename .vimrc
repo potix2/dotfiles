@@ -37,7 +37,8 @@ set vb t_vb=
 
 " set statusline
 " TODO: define MakeStatusLine()
-set stl=%f\ %m\ %r%{fugitive#statusline()}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
+" set stl=%f\ %m\ %r%{fugitive#statusline()}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
+set stl=%f\ %m\ [%Y]%r%{fugitive#statusline()}\ WorkOn:%r%{virtualenv#statusline()}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
 set laststatus=2
 
 " Show the current mode
@@ -123,12 +124,17 @@ Bundle 'eagletmt/onlinejudge-vim'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'violetyk/cake.vim'
 Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'reinh/vim-makegreen'
+Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'mjbrownie/pythoncomplete.vim'
 
 "vim.org
 Bundle 'sudo.vim'
 Bundle 'taglist.vim'
 Bundle 'VimClojure'
 Bundle 'Wombat'
+Bundle 'nginx.vim'
 " }
 " }
 
@@ -235,8 +241,15 @@ augroup MyRubyCmd
     autocmd BufWinEnter,BufNewFile *.gemspec set filetype=ruby
     autocmd BufWinEnter,BufNewFile Gemfile set filetype=ruby
     autocmd BufWinEnter,BufNewFile Rakefile set filetype=ruby
+    autocmd BufWinEnter,BufNewFile Vagrantfile set filetype=ruby
     autocmd FileType ruby set tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+augroup END
+
+" for python {{2
+augroup MyPythonCmd
+    autocmd!
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
 augroup END
 
 " for json {{2
@@ -244,6 +257,12 @@ augroup MyJsonCmd
     autocmd!
     autocmd BufWinEnter,BufNewFile *.json set filetype=json
     autocmd FileType json vmap <Leader>f !python -m json.tool<CR>
+augroup END
+
+" for nginx {{2
+augroup MyNginx
+    autocmd!
+    autocmd BufRead,BufNewFile /usr/local/etc/nginx* set ft=nginx
 augroup END
 
 " setup tabline {{2
@@ -476,6 +495,17 @@ endif
 " syntastic {{2
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 2
+
+" for javascript
+let g:syntastic_mode_map = { 'mode': 'passive',
+            \ 'active_filetypes': ['ruby', 'javascript', 'php'],
+            \ 'passive_filetypes': [] }
+let g:syntastic_javascript_jslint_conf = "--white --undef --nomen --regexp --plusplus --bitwise --newcap --sloppy --vars"
+augroup MyJsCmd
+    autocmd!
+    autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
+augroup end
+
 
 " caw {{2
 let g:caw_no_default_keymappings = 1

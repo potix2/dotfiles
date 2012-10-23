@@ -28,7 +28,7 @@ function history-all { history -E 1 }
 export LSCOLORS=dxfxcxdxbxegedabagacad
 
 # aliases
-alias ls='ls -G -w'
+alias ls='ls -G --color'
 alias v='vim'
 
 # aliases for git

@@ -122,7 +122,6 @@ Bundle 'jcf/rvm_ruby.vim'
 Bundle 'mfumi/ProjectEuler.vim'
 Bundle 'eagletmt/onlinejudge-vim'
 Bundle 'eagletmt/ghcmod-vim'
-Bundle 'violetyk/cake.vim'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'reinh/vim-makegreen'
@@ -266,38 +265,38 @@ augroup MyNginx
 augroup END
 
 " setup tabline {{2
-function! s:tabpage_label(n)"{{{
-    let title = gettabvar(a:n, 'title')
-    if title !=# ''
-        return title
-    endif
-
-    let bufnrs = tabpagebuflist(a:n)
-    let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-
-    let no = len(bufnrs)
-    if no is 1
-        let no = ''
-    endif
-
-    let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
-    let sp = (no.mod) ==# '' ? '' : ' '
-    let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]
-    let fname = pathshorten(bufname(curbufnr))
-
-    let label = no.mod.sp.fname
-    return '%' . a:n .'T'.hi.label.'%T%#TabLineFill#'
-endfunction"}}}
-
-function! MakeTabLine()"{{{
-    let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-    let sep = '|'
-    let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
-    let info = fnamemodify(getcwd(),":~").''
-    return tabpages . '%=' .info
-endfunction"}}}
-set showtabline=2
-set tabline=%!MakeTabLine()
+" function! s:tabpage_label(n)"{{{
+"     let title = gettabvar(a:n, 'title')
+"     if title !=# ''
+"         return title
+"     endif
+"
+"     let bufnrs = tabpagebuflist(a:n)
+"     let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+"
+"     let no = len(bufnrs)
+"     if no is 1
+"         let no = ''
+"     endif
+"
+"     let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+"     let sp = (no.mod) ==# '' ? '' : ' '
+"     let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]
+"     let fname = pathshorten(bufname(curbufnr))
+"
+"     let label = no.mod.sp.fname
+"     return '%' . a:n .'T'.hi.label.'%T%#TabLineFill#'
+" endfunction"}}}
+"
+" function! MakeTabLine()"{{{
+"     let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+"     let sep = '|'
+"     let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
+"     let info = fnamemodify(getcwd(),":~").''
+"     return tabpages . '%=' .info
+" endfunction"}}}
+" set showtabline=2
+" set tabline=%!MakeTabLine()
 
 function! GetTagList(expr)"{{{
     let tl = taglist(a:expr)

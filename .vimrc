@@ -28,6 +28,7 @@ set clipboard+=unnamed
 set hidden
 set list
 set listchars=tab:>-\,trail:~
+set background=dark
 
 " Make command line two lines high
 set ch=2
@@ -127,6 +128,7 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'reinh/vim-makegreen'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'mjbrownie/pythoncomplete.vim'
+Bundle 'altercation/vim-colors-solarized'
 
 "vim.org
 Bundle 'sudo.vim'
@@ -143,7 +145,8 @@ filetype indent on
 filetype on
 let loaded_matchparen = 1
 
-colorschem wombat
+let g:solarized_termcolors=256
+colorschem solarized
 
 " Auto reload when changed by external.
 set autoread

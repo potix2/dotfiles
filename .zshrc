@@ -90,6 +90,10 @@ if [ -f "/usr/local/share/python/virtualenvwrapper.sh" ]; then
     source /usr/local/share/python/virtualenvwrapper.sh
 fi
 
+if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
 #setup path
 if [ -d $HOME/bin ]; then
     PATH=$HOME/bin:$PATH

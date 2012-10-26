@@ -28,18 +28,20 @@ function history-all { history -E 1 }
 export LSCOLORS=dxfxcxdxbxegedabagacad
 
 # aliases
-alias ls='ls -G --color'
+alias ls='ls -G'
 alias v='vim'
 
 # aliases for git
 alias g='git'
 alias ga='git add'
 alias gst='git status'
+alias gbr='git branch'
 alias gdi='git diff --color'
 alias gds='git diff --color --staged'
 alias gci='git commit -a'
 alias gco='git checkout'
 alias glgg='git log --color --graph --decorate --oneline'
+alias glgs='git log --stat --color'
 
 # aliases for tmux
 alias t='tmux'

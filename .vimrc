@@ -136,6 +136,8 @@ Bundle 'taglist.vim'
 Bundle 'VimClojure'
 Bundle 'Wombat'
 Bundle 'nginx.vim'
+Bundle 'groovy.vim'
+Bundle 'sql.vim'
 " }
 " }
 

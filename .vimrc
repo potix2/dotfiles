@@ -520,6 +520,7 @@ let vimclojure#ParenRainbow = 1
 let vimclojure#WantGorilla= 1
 let vimclojure#WantNailgun = 1
 let vimclojure#NailgunClient = "/usr/local/bin/ng"
+let vimclojure#SplitPos = "right"
 
 " local settings {{{1
 if filereadable(expand('~/.local.vim'))

@@ -510,6 +510,10 @@ augroup MyJsCmd
     autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
 augroup end
 
+augroup MyGradle
+    autocmd!
+    autocmd BufWinEnter,BufNewFile *.gradle set filetype=groovy
+augroup END
 
 " caw {{2
 let g:caw_no_default_keymappings = 1

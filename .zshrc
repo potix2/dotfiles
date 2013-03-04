@@ -43,6 +43,23 @@ alias gco='git checkout'
 alias glgg='git log --color --graph --decorate --oneline'
 alias glgs='git log --stat --color'
 
+# aliases for gradle
+alias gr='gradle'
+alias grb='gradle build'
+alias grc='gradle clean'
+
+# aliases for bundle
+alias b='bundle'
+alias bi='bundle install'
+alias be='bundle exec'
+alias br='bundle exec rake'
+alias brs='bundle exec rspec'
+
+# aliases for rake
+alias rdm='rake db:migrate'
+alias rdrm='rake db:migrate:reset db:migrate'
+alias rds='rake db:seed'
+
 # aliases for tmux
 alias t='tmux'
 alias ta='tmux attach'

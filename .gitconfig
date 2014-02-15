@@ -1,0 +1,9 @@
+[alias]
+    co = checkout
+    st = status
+    ci = commit -a
+    di = diff --color
+    ds = diff --color --staged
+    br = branch
+    stat = log --stat --summary
+    glgg = log --graph --decorate --color

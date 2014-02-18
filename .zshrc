@@ -135,5 +135,6 @@ if [ -d ${HOME}/.rbenv ]; then
     eval "$(rbenv init -)"
 fi
 
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 [ -z "$path" ] && typeset -T PATH path
 typeset -U path

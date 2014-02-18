@@ -7,3 +7,15 @@
     br = branch
     stat = log --stat --summary
     glgg = log --graph --decorate --color
+
+[hub]
+protocol = https
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[core]
+excludesfile = /opt/boxen/config/git/gitignore
+[user]
+	email = potix2@gmail.com
+	name = Katsunori Kanda

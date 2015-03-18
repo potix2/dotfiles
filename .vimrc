@@ -129,6 +129,7 @@ Bundle 'reinh/vim-makegreen'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'mjbrownie/pythoncomplete.vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'derekwyatt/vim-scala'
 
 "vim.org
 Bundle 'sudo.vim'

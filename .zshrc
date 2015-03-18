@@ -70,6 +70,8 @@ alias zel='v ~/.local.zshrc'
 alias zs='source ~/.zshrc'
 alias zsl='source ~/.local.zshrc'
 
+alias pink='ping'
+
 if [ -f $HOME/.local.zshrc ]; then
     source $HOME/.local.zshrc
 fi
@@ -136,5 +138,12 @@ if [ -d ${HOME}/.rbenv ]; then
 fi
 
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+if [ -d ${HOME}/.nodebrew ]; then
+    PATH=${HOME}/.nodebrew/current/bin:${PATH}
+fi
+
+export GOROOT=/usr/local/Cellar/go/1.2.2
+export GOPATH=/usr/local/bin/go
+
 [ -z "$path" ] && typeset -T PATH path
 typeset -U path

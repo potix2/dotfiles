@@ -86,6 +86,10 @@ function lu2lw {
     mv $1.tmp $1
 }
 
+function lessmd {
+    grip $1 --export /dev/stdout | w3m -T text/html
+}
+
 zstyle 'vcs_info:*' formats '[%b]'
 zstyle 'vcs_info:*' actionformats '[%b|%a]'
 precmd() {
@@ -95,25 +99,6 @@ precmd() {
 }
 
 RPROMPT="[%~] %1(v|%F{green}%1v%f|)"
-
-#for php
-# export PHP_HOME=$HOME/local/php/versions
-# export PHP_VERSIONS=$HOME/local/php/versions
-# [ -f $(brew --prefix php-version)/php-version.sh ] &&
-#     source $(brew --prefix php-version)/php-version.sh && php-version 5.4.0 > /dev/null
-
-#for python
-if [ -d $HOME/.virtualenvs ]; then
-    export WORKON_HOME=$HOME/.virtualenvs
-fi
-
-if [ -f "/usr/local/share/python/virtualenvwrapper.sh" ]; then
-    source /usr/local/share/python/virtualenvwrapper.sh
-fi
-
-if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
 
 #setup path
 if [ -d $HOME/bin ]; then

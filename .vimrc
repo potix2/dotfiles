@@ -8,7 +8,7 @@ if has('vim_starting') && has('reltime')
 endif
 
 filetype off
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect('bundle/{}')
 call pathogen#helptags()
 filetype on
 
@@ -92,10 +92,10 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/vimfiler'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
+Bundle 'Shougo/neomru.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'mattn/gist-vim'
-Bundle 'mattn/zencoding-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/sonictemplate-vim'
 Bundle 'tsaleh/vim-matchit'
@@ -106,6 +106,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fireplace'
 Bundle 'tyru/restart.vim'
 Bundle 'tyru/caw.vim'
 Bundle 'tyru/open-browser.vim'
@@ -121,7 +122,6 @@ Bundle 'hallison/vim-markdown'
 Bundle 'godlygeek/tabular'
 Bundle 'jcf/rvm_ruby.vim'
 Bundle 'mfumi/ProjectEuler.vim'
-Bundle 'eagletmt/onlinejudge-vim'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'jelera/vim-javascript-syntax'
@@ -134,7 +134,6 @@ Bundle 'derekwyatt/vim-scala'
 "vim.org
 Bundle 'sudo.vim'
 Bundle 'taglist.vim'
-Bundle 'VimClojure'
 Bundle 'Wombat'
 Bundle 'nginx.vim'
 Bundle 'groovy.vim'
@@ -149,7 +148,7 @@ filetype on
 let loaded_matchparen = 1
 
 let g:solarized_termcolors=256
-colorschem solarized
+colorschem desert
 
 " Auto reload when changed by external.
 set autoread
@@ -519,15 +518,6 @@ augroup END
 " caw {{2
 let g:caw_no_default_keymappings = 1
 map <silent> <Leader>cc <Plug>(caw:i:toggle)
-
-" vimclojure {{2
-let vimclojure#HighlightBuiltins = 1
-let vimclojure#DynamicHilighting = 1
-let vimclojure#ParenRainbow = 1
-let vimclojure#WantGorilla= 1
-let vimclojure#WantNailgun = 1
-let vimclojure#NailgunClient = "/usr/local/bin/ng"
-let vimclojure#SplitPos = "right"
 
 " local settings {{{1
 if filereadable(expand('~/.local.vim'))

@@ -19,3 +19,5 @@ excludesfile = /opt/boxen/config/git/gitignore
 [user]
 	email = potix2@gmail.com
 	name = Katsunori Kanda
+[push]
+	default = matching

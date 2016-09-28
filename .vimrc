@@ -132,6 +132,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'derekwyatt/vim-scala'
 
 "vim.org
+Bundle 'emmet.vim'
 Bundle 'sudo.vim'
 Bundle 'taglist.vim'
 Bundle 'Wombat'
@@ -243,6 +244,7 @@ augroup END
 augroup MyRubyCmd
     autocmd!
     autocmd BufWinEnter,BufNewFile *.gemspec set filetype=ruby
+    autocmd BufWinEnter,BufNewFile *.cap set filetype=ruby
     autocmd BufWinEnter,BufNewFile Gemfile set filetype=ruby
     autocmd BufWinEnter,BufNewFile Rakefile set filetype=ruby
     autocmd BufWinEnter,BufNewFile Vagrantfile set filetype=ruby

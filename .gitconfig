@@ -17,7 +17,11 @@ helper = /opt/boxen/bin/boxen-git-credential
 [core]
 excludesfile = /opt/boxen/config/git/gitignore
 [user]
-	email = potix2@gmail.com
-	name = Katsunori Kanda
+    email = potix2@gmail.com
+    name = Katsunori Kanda
 [push]
-	default = matching
+    default = matching
+[filter "lfs"]
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true

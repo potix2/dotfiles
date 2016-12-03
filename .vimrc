@@ -98,7 +98,6 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/sonictemplate-vim'
-Bundle 'tsaleh/vim-matchit'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
@@ -111,10 +110,7 @@ Bundle 'tyru/restart.vim'
 Bundle 'tyru/caw.vim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'scrooloose/syntastic'
-" Bundle 'potix2/vim-mysqlrun'
-" Bundle 'potix2/vim-phprefactor'
 Bundle 'kana/vim-metarw'
-"Bundle 'kana/vim-vspec'
 Bundle 'kana/mduem'
 Bundle 'ujihisa/blogger.vim'
 Bundle 'ujihisa/neco-ghc'
@@ -139,6 +135,7 @@ Bundle 'Wombat'
 Bundle 'nginx.vim'
 Bundle 'groovy.vim'
 Bundle 'sql.vim'
+Bundle 'matchit.zip'
 " }
 " }
 
@@ -445,42 +442,6 @@ let g:quickrun_config['cpp'] = {
     \ "cmdopt": "-Wall",
     \ "outputter": "compile"
     \ }
-
-let compile = quickrun#outputter#multi#new()
-let compile.config.targets = ["buffer", "quickfix"]
-function! compile.init(session)
-    :cclose
-    call call(quickrun#outputter#multi#new().init, [a:session], self)
-endfunction
-
-function! compile.finish(session)
-    call call(quickrun#outputter#multi#new().finish, [a:session], self)
-endfunction
-
-call quickrun#register_outputter("compile", compile)
-
-" for phpunit {{{3
-let phpunit_outputter = quickrun#outputter#buffer#new()
-function! phpunit_outputter.init(session)
-    call call(quickrun#outputter#buffer#new().init, [a:session],self)
-endfunction
-
-function! phpunit_outputter.finish(session)
-    highlight default PhpUnitOK     ctermbg=Green ctermfg=White
-    highlight default PhpUnitFail   ctermbg=Red ctermfg=White
-    highlight default PhpUnitAssertFail   ctermbg=Red
-    call matchadd("PhpUnitFail", "^FAILURES.*$")
-    call matchadd("PhpUnitOK", "^OK.*$")
-    call matchadd("PhpUnitAssertFail", "^Failed.*$")
-    call call(quickrun#outputter#buffer#new().finish, [a:session], self)
-endfunction
-
-call quickrun#register_outputter("phpunit_outputter", phpunit_outputter)
-let g:phpunit_path = 'phpunit'
-let g:quickrun_config['php.unit'] = {
-            \ 'command': g:phpunit_path,
-            \ 'outputter': 'phpunit_outputter',
-            \ }
 
 " for rspec {{{3
 let g:quickrun_config['ruby.rspec'] = {

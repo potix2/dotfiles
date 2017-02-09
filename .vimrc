@@ -37,9 +37,7 @@ set ch=2
 set vb t_vb=
 
 " set statusline
-" TODO: define MakeStatusLine()
-" set stl=%f\ %m\ %r%{fugitive#statusline()}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
-set stl=%f\ %m\ [%Y]%r%{fugitive#statusline()}\ WorkOn:%r%{virtualenv#statusline()}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
+set stl=%f\ %m\ [%Y]%r%{exists('g:loaded_fugitive')?fugitive#statusline():''}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
 set laststatus=2
 
 " Show the current mode

@@ -124,6 +124,8 @@ Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'mjbrownie/pythoncomplete.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'fatih/vim-hclfmt'
+Bundle 'alfredodeza/pytest.vim'
 
 "vim.org
 Bundle 'emmet.vim'
@@ -251,6 +253,10 @@ augroup END
 augroup MyPythonCmd
     autocmd!
     autocmd FileType python set omnifunc=pythoncomplete#Complete
+    nnoremap <silent><Leader>tt <Esc>:Pytest project verbose<CR>
+    nnoremap <silent><Leader>tf <Esc>:Pytest file verbose<CR>
+    nnoremap <silent><Leader>tc <Esc>:Pytest class verbose<CR>
+    nnoremap <silent><Leader>tm <Esc>:Pytest method verbose<CR>
 augroup END
 
 " for json {{2
@@ -383,55 +389,6 @@ let g:quickrun_config['markdown'] = {
     \ 'exec': ['%c -s -f markdown -t html -o %s:p:r.html %s', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'],
     \ 'tempfile': '{tempname()}.md'
     \ }
-
-" for mysql {{{3
-let g:quickrun_config['sql'] = {
-            \ 'command': 'mysql',
-            \ 'exec': ['%c %o < %s'],
-            \ 'cmdopt': '%{MakeMySQLCommandOptions()}',
-            \ }
-
-let g:mysql_config_host = ''
-let g:mysql_config_port = ''
-let g:mysql_config_user = 'root'
-function! MakeMySQLCommandOptions()
-    if !exists("g:mysql_config_host")
-        let g:mysql_config_host = input("host> ")
-    endif
-    if !exists("g:mysql_config_port")
-        let g:mysql_config_port = input("port> ")
-    endif
-    if !exists("g:mysql_config_user")
-        let g:mysql_config_user = input("user> ")
-    endif
-    if !exists("g:mysql_config_pass")
-        let g:mysql_config_pass = inputsecret("password> ")
-    endif
-    if !exists("g:mysql_config_db")
-        let g:mysql_config_db = input("database> ")
-    endif
-
-    let optlist = []
-    if g:mysql_config_user != ''
-        call add(optlist, '-u ' . g:mysql_config_user)
-    endif
-    if g:mysql_config_host != ''
-        call add(optlist, '-h ' . g:mysql_config_host)
-    endif
-    if g:mysql_config_pass != ''
-        call add(optlist, '-p' . g:mysql_config_pass)
-    endif
-    if g:mysql_config_port != ''
-        call add(optlist, '-P ' . g:mysql_config_port)
-    endif
-    if exists("g:mysql_config_otheropts")
-        call add(optlist, g:mysql_config_otheropts)
-    endif
-
-    call add(optlist, g:mysql_config_db)
-    return join(optlist, ' ') 
-endfunction
-noremap <silent> <Leader>qs :QuickRun sql<CR>
 
 " for cpp {{{3
 let g:quickrun_config['cpp'] = {

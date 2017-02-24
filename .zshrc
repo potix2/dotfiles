@@ -130,5 +130,22 @@ fi
 export GOROOT=/usr/local/Cellar/go/1.2.2
 export GOPATH=/usr/local/bin/go
 
+
+function peco-select-history() {
+   local tac
+   if which tac > /dev/null; then
+       tac="tac"
+   else
+       tac="tail -r"
+   fi
+   BUFFER=$(\history -n 1 | \
+       eval $tac | \
+       peco --query "$LBUFFER")
+   CURSOR=$#BUFFER
+   zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
 [ -z "$path" ] && typeset -T PATH path
 typeset -U path

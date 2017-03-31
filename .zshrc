@@ -127,9 +127,11 @@ if [ -d ${HOME}/.nodebrew ]; then
     PATH=${HOME}/.nodebrew/current/bin:${PATH}
 fi
 
-export GOROOT=/usr/local/Cellar/go/1.2.2
-export GOPATH=/usr/local/bin/go
-
+export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/ws/golang
+if [ -d "${GOROOT}/bin" ]; then
+    PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
+fi
 
 function peco-select-history() {
    local tac

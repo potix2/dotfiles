@@ -125,6 +125,7 @@ Bundle 'mjbrownie/pythoncomplete.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'fatih/vim-hclfmt'
+Bundle 'fatih/vim-go'
 Bundle 'alfredodeza/pytest.vim'
 
 "vim.org
@@ -270,6 +271,20 @@ augroup END
 augroup MyNginx
     autocmd!
     autocmd BufRead,BufNewFile /usr/local/etc/nginx* set ft=nginx
+augroup END
+
+" for golang {{2
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
+augroup MyGolang
+    autocmd!
+    autocmd FileType go nmap <leader>r <Plug>(go-run)
+    autocmd FileType go nmap <leader>b <Plug>(go-build)
+    autocmd FileType go nmap <leader>t <Plug>(go-test)
+    autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+    autocmd FileType go nmap <leader>gd <Plug>(go-doc)
 augroup END
 
 " setup tabline {{2
@@ -446,3 +461,4 @@ endif
 if filereadable('.project.vim')
     source .project.vim
 endif
+

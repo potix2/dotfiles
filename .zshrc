@@ -71,6 +71,7 @@ alias zs='source ~/.zshrc'
 alias zsl='source ~/.local.zshrc'
 
 alias pink='ping'
+alias dcos-publs="dcos node --json | jq 'map(select(.attributes.public_ip).hostname)'"
 
 if [ -f $HOME/.local.zshrc ]; then
     source $HOME/.local.zshrc

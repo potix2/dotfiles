@@ -267,6 +267,14 @@ augroup MyJsonCmd
     autocmd FileType json vmap <Leader>f !python -m json.tool<CR>
 augroup END
 
+" for yaml {{2
+augroup MyYamlCmd
+    autocmd!
+    autocmd BufWinEnter,BufNewFile *.yaml set filetype=yaml
+    autocmd BufWinEnter,BufNewFile *.yml set filetype=yaml
+    autocmd FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
 " for nginx {{2
 augroup MyNginx
     autocmd!

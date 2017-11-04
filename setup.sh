@@ -19,13 +19,8 @@ ln -nsf ${WSDIR}/.tmux.conf $HOME/.tmux.conf
 ln -nsf ${WSDIR}/.gitconfig $HOME/.gitconfig
 ln -nsf ${HOME}/zsh-completions/src $HOME/.zsh.d
 
-if [ ! -d $HOME/.vim/autoload ];
+if [ ! -d $HOME/.vim/pack/minpack/opt/minpac ];
 then
-    mkdir -p $HOME/.vim/autoload ~/.vim/bundle
-    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-fi
-
-if [ ! -d $HOME/.vim/bundle/vundle ];
-then
-    git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+    git clone https://github.com/k-takata/minpac.git \
+        ~/.vim/pack/minpac/opt/minpac
 fi

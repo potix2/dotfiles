@@ -29,7 +29,7 @@ export LSCOLORS=dxfxcxdxbxegedabagacad
 
 # aliases
 alias ls='ls -G'
-alias v='vim'
+alias vi='vim'
 
 # aliases for git
 alias g='git'

@@ -7,11 +7,6 @@ if has('vim_starting') && has('reltime')
     augroup END
 endif
 
-filetype off
-call pathogen#infect('bundle/{}')
-call pathogen#helptags()
-filetype on
-
 " Behavior settings. {{{1
 set nocompatible
 set autoindent
@@ -26,9 +21,11 @@ set nohls
 set incsearch
 set clipboard+=unnamed
 set hidden
-set list
-set listchars=tab:>-\,trail:~
 set background=dark
+set autowrite
+set completeopt=menuone
+set spelllang=en,cjk
+set t_Co=256
 
 " Make command line two lines high
 set ch=2
@@ -37,7 +34,6 @@ set ch=2
 set vb t_vb=
 
 " set statusline
-set stl=%f\ %m\ [%Y]%r%{exists('g:loaded_fugitive')?fugitive#statusline():''}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
 set laststatus=2
 
 " Show the current mode
@@ -78,121 +74,80 @@ let g:maplocalleader = ","
 "  n... : where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
-" for Vundle {
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if &compatible
+  set nocompatible
+endif
 
-" managed plugins by Vundle {
-Bundle 'gmarik/vundle'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/vimfiler'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/neomru.vim'
-Bundle 'thinca/vim-ref'
-Bundle 'thinca/vim-quickrun'
-Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/sonictemplate-vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tyru/restart.vim'
-Bundle 'tyru/caw.vim'
-Bundle 'tyru/open-browser.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'kana/vim-metarw'
-Bundle 'kana/mduem'
-Bundle 'ujihisa/blogger.vim'
-Bundle 'ujihisa/neco-ghc'
-Bundle 'hallison/vim-markdown'
-Bundle 'godlygeek/tabular'
-Bundle 'jcf/rvm_ruby.vim'
-Bundle 'mfumi/ProjectEuler.vim'
-Bundle 'eagletmt/ghcmod-vim'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'reinh/vim-makegreen'
-Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'mjbrownie/pythoncomplete.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'fatih/vim-hclfmt'
-Bundle 'fatih/vim-go'
-Bundle 'alfredodeza/pytest.vim'
+packadd minpac
+if exists('*minpac#init')
+  " minpac is loaded.
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-"vim.org
-Bundle 'emmet.vim'
-Bundle 'sudo.vim'
-Bundle 'taglist.vim'
-Bundle 'Wombat'
-Bundle 'nginx.vim'
-Bundle 'groovy.vim'
-Bundle 'sql.vim'
-Bundle 'matchit.zip'
-" }
-" }
+  " Additional plugins here.
+  call minpac#add('vim-jp/syntax-vim-ex')
+  call minpac#add('Shougo/unite.vim')
+  call minpac#add('Shougo/neocomplcache')
+  call minpac#add('Shougo/vimfiler')
+  call minpac#add('Shougo/vimproc')
+  call minpac#add('Shougo/vimshell')
+  call minpac#add('Shougo/neomru.vim')
+  call minpac#add('thinca/vim-ref')
+  call minpac#add('thinca/vim-quickrun')
+  call minpac#add('mattn/gist-vim')
+  call minpac#add('mattn/webapi-vim')
+  call minpac#add('Lokaltog/vim-easymotion')
+  call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-repeat')
+  call minpac#add('tpope/vim-abolish')
+  call minpac#add('tpope/vim-endwise')
+  call minpac#add('tpope/vim-dispatch')
+  call minpac#add('tyru/restart.vim')
+  call minpac#add('tyru/caw.vim')
+  call minpac#add('tyru/open-browser.vim')
+  call minpac#add('scrooloose/syntastic')
+  call minpac#add('kana/vim-metarw')
+  call minpac#add('kana/mduem')
+  call minpac#add('ujihisa/blogger.vim')
+  call minpac#add('ujihisa/neco-ghc')
+  call minpac#add('hallison/vim-markdown')
+  call minpac#add('eagletmt/ghcmod-vim')
+  call minpac#add('jelera/vim-javascript-syntax')
+  call minpac#add('mjbrownie/pythoncomplete.vim')
+  call minpac#add('derekwyatt/vim-scala')
+  call minpac#add('fatih/vim-hclfmt')
+  call minpac#add('fatih/vim-go')
+  call minpac#add('alfredodeza/pytest.vim')
+  call minpac#add('neovimhaskell/haskell-vim')
+  call minpac#add('whatyouhide/vim-gotham')
+  call minpac#add('vim-scripts/emmet.vim')
+  call minpac#add('vim-scripts/sudo.vim')
+  call minpac#add('vim-scripts/taglist.vim')
+  call minpac#add('vim-scripts/nginx.vim')
+  call minpac#add('vim-scripts/groovy.vim')
+  call minpac#add('vim-scripts/sql.vim')
+  call minpac#add('vim-scripts/matchit.zip')
+  call minpac#add('itchyny/lightline.vim')
+  call minpac#add('lambdalisue/gina.vim')
+endif
+
+" Plugin settings here.
+
+" Define user commands for updating/cleaning the plugins.
+" Each of them loads minpac, reloads .vimrc to register the
+" information of plugins, then performs the task.
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
 filetype plugin on
 filetype indent on
-
 filetype on
 let loaded_matchparen = 1
 
-let g:solarized_termcolors=256
-colorschem desert
+colorschem gotham256
 
 " Auto reload when changed by external.
 set autoread
-
-" Get character code on cursor with 'fileencoding'.
-function! GetCharacterCode()
-  let str = iconv(matchstr(getline('.'), '.', col('.') - 1), &enc, &fenc)
-  let out = '0x'
-  for i in range(strlen(str))
-    let out .= printf('%02X', char2nr(str[i]))
-  endfor
-  if str ==# ''
-    let out .= '00'
-  endif
-  return out
-endfunction
-
-" Return the current file size in human readable format.
-function! GetFileSize()
-  let size = &encoding ==# &fileencoding || &fileencoding ==# ''
-  \        ? line2byte(line('$') + 1) - 1 : getfsize(expand('%'))
-
-  if size < 0
-    let size = 0
-  endif
-  for unit in ['B', 'KB', 'MB']
-    if size < 1024
-      return size . unit
-    endif
-    let size = size / 1024
-  endfor
-  return size . 'GB'
-endfunction
-
-function! Separate()
-    let line = getline('.')
-    let len = strlen(line)
-    let pos = 0
-    normal dd
-    while pos < len
-        call append(line('.'), "+ '" . strpart(line, pos, 40) . "'")
-        normal j
-        let pos += 40
-    endwhile
-endfunction
 
 " Backup.
 set backup
@@ -212,25 +167,6 @@ if has('persistent_undo')
   augroup END
 endif
 set backupcopy=yes
-
-" font settings. {{2
-if has("gui_running")
-    set guifont=Inconsolata:h14
-endif
-
-" for php {{2
-augroup MyAutoPHPCmd
-    autocmd!
-    autocmd FileType php :set dictionary=~/.vim/dict/php.dict
-    autocmd FileType php :set tags=tags;~/.pear.tags
-augroup END
-let g:ref_phpmanual_path = $HOME . '/manuals/php'
-
-" for phpunit {{2
-augroup QuickRunPHPUnit
-    autocmd!
-    autocmd BufWinEnter,BufNewFile *Test.php set filetype=php.unit
-augroup END
 
 " for make {{2
 augroup AutoMakeCmd
@@ -275,17 +211,12 @@ augroup MyYamlCmd
     autocmd FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
-" for nginx {{2
-augroup MyNginx
-    autocmd!
-    autocmd BufRead,BufNewFile /usr/local/etc/nginx* set ft=nginx
-augroup END
-
 " for golang {{2
 if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
+let g:go_auto_type_info = 1
 augroup MyGolang
     autocmd!
     autocmd FileType go nmap <leader>r <Plug>(go-run)
@@ -293,41 +224,10 @@ augroup MyGolang
     autocmd FileType go nmap <leader>t <Plug>(go-test)
     autocmd FileType go nmap <leader>c <Plug>(go-coverage)
     autocmd FileType go nmap <leader>gd <Plug>(go-doc)
+    nnoremap <leader>a ::cclose<CR>
+    autocmd FileType go nnoremap <C-n> :cnext<CR>
+    autocmd FileType go nnoremap <C-m> :cprevious<CR>
 augroup END
-
-" setup tabline {{2
-" function! s:tabpage_label(n)"{{{
-"     let title = gettabvar(a:n, 'title')
-"     if title !=# ''
-"         return title
-"     endif
-"
-"     let bufnrs = tabpagebuflist(a:n)
-"     let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-"
-"     let no = len(bufnrs)
-"     if no is 1
-"         let no = ''
-"     endif
-"
-"     let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
-"     let sp = (no.mod) ==# '' ? '' : ' '
-"     let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]
-"     let fname = pathshorten(bufname(curbufnr))
-"
-"     let label = no.mod.sp.fname
-"     return '%' . a:n .'T'.hi.label.'%T%#TabLineFill#'
-" endfunction"}}}
-"
-" function! MakeTabLine()"{{{
-"     let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-"     let sep = '|'
-"     let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
-"     let info = fnamemodify(getcwd(),":~").''
-"     return tabpages . '%=' .info
-" endfunction"}}}
-" set showtabline=2
-" set tabline=%!MakeTabLine()
 
 function! GetTagList(expr)"{{{
     let tl = taglist(a:expr)
@@ -358,10 +258,6 @@ nnoremap <silent> <Leader>bd :bd<CR>
 nnoremap <silent> <Leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <Leader>sv :so $MYVIMRC<CR>
 
-" for codeforeces {{{2
-nnoremap <C-l> :make %:r
-nnoremap <C-l><C-l> :!./%:r
-
 " Plugin settings. {{{1
 " Unite {{2
 let g:unite_enable_start_insert = 1
@@ -389,21 +285,12 @@ let g:neocomplcache_enable_at_startup = 1
 " VimFiler {{2
 let g:vimfiler_as_default_explorer = 1
 
-" vimshell {{2
-" let g:VimShell_EnableInteractive = 1
-
 " tags {
 set tags=tags;~/.tags
 
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
 endif
-
-" Tabularize.vim {{{2
-nmap <Leader>t= :Tabularize /=<CR>
-vmap <Leader>t= :Tabularize /=<CR>
-nmap <Leader>t: :Tabularize /:\zs<CR>
-vmap <Leader>t: :Tabularize /:\zs<CR>
 
 " quickrun.vim {{2
 let g:quickrun_config = {}
@@ -464,9 +351,3 @@ map <silent> <Leader>cc <Plug>(caw:i:toggle)
 if filereadable(expand('~/.local.vim'))
     source ~/.local.vim
 endif
-
-" load project settings
-if filereadable('.project.vim')
-    source .project.vim
-endif
-

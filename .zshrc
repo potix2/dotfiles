@@ -103,35 +103,32 @@ RPROMPT="[%~] %1(v|%F{green}%1v%f|)"
 
 #setup path
 if [ -d $HOME/bin ]; then
-    PATH=$HOME/bin:$PATH
+    path+=($HOME/bin)
 fi
 
 if [ -d $HOME/.cabal/bin ]; then
-    PATH=$HOME/.cabal/bin:$PATH
+    path+=($HOME/.cabal/bin)
 fi
 
 if [ -d /usr/local/bin ]; then
-    PATH=/usr/local/bin:$PATH
+    path+=('/usr/local/bin')
 fi
 
 if [ -d /usr/local/sbin ]; then
-    PATH=/usr/local/sbin:$PATH
+    path+=('/usr/local/sbin')
 fi
 
 if [ -d ${HOME}/.rbenv ]; then
-    PATH=${HOME}/.rbenv/bin:${PATH}
+    path+=($HOME/.rbenv/bin)
     eval "$(rbenv init -)"
 fi
 
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-if [ -d ${HOME}/.nodebrew ]; then
-    PATH=${HOME}/.nodebrew/current/bin:${PATH}
+if [ -d ${HOME}/go/bin ]; then
+    path+=($HOME/go/bin)
 fi
 
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/ws/golang
-if [ -d "${GOROOT}/bin" ]; then
-    PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
+if [ -d ${HOME}/.nodebrew ]; then
+    path+=($HOME/.nodebrew/current/bin)
 fi
 
 function peco-select-history() {

@@ -19,7 +19,9 @@ set wrapscan
 set ruler
 set nohls
 set incsearch
-set clipboard+=unnamed
+if $TMUX == ''
+  set clipboard+=unnamed
+endif
 set hidden
 set background=dark
 set autowrite
@@ -86,12 +88,6 @@ if exists('*minpac#init')
 
   " Additional plugins here.
   call minpac#add('vim-jp/syntax-vim-ex')
-  call minpac#add('Shougo/unite.vim')
-  call minpac#add('Shougo/neocomplcache')
-  call minpac#add('Shougo/vimfiler')
-  call minpac#add('Shougo/vimproc')
-  call minpac#add('Shougo/vimshell')
-  call minpac#add('Shougo/neomru.vim')
   call minpac#add('thinca/vim-ref')
   call minpac#add('thinca/vim-quickrun')
   call minpac#add('mattn/gist-vim')
@@ -129,6 +125,9 @@ if exists('*minpac#init')
   call minpac#add('vim-scripts/matchit.zip')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('lambdalisue/gina.vim')
+  call minpac#add('google/vim-maktaba')
+  call minpac#add('hashivim/vim-terraform')
+  call minpac#add('preservim/nerdtree')
 endif
 
 " Plugin settings here.
@@ -212,10 +211,10 @@ augroup MyYamlCmd
 augroup END
 
 " for golang {{2
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
+"if !exists('g:neocomplcache_omni_patterns')
+"    let g:neocomplcache_omni_patterns = {}
+"endif
+"let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
 let g:go_auto_type_info = 1
 augroup MyGolang
     autocmd!
@@ -232,6 +231,11 @@ augroup END
 function! GetTagList(expr)"{{{
     let tl = taglist(a:expr)
 endfunction"}}}
+
+" for NerdTree {{{2
+augroup MyNerdTree
+    nnoremap <silent><C-n> :NERDTreeToggle<CR>
+augroup END
 
 " Key mappings {{{1
 "
@@ -259,31 +263,6 @@ nnoremap <silent> <Leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <Leader>sv :so $MYVIMRC<CR>
 
 " Plugin settings. {{{1
-" Unite {{2
-let g:unite_enable_start_insert = 1
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-    nmap <buffer> jj <Plug>(unite_exit)
-    imap <buffer> jj <Plug>(unite_exit)
-    nmap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
-    imap <silent> <buffer> <C-w> <Plug>(unite_delete_backward_path)
-endfunction
-nnoremap <silent> <Leader>uf :Unite file buffer file_mru<CR>
-nnoremap <silent> <Leader>f :Unite buffer file_mru<CR>
-nnoremap <silent> <Leader>ur :UniteResume<CR>
-nnoremap <silent> <Leader>ub :Unite buffer<CR>
-nnoremap <silent> <Leader>ug :Unite grep<CR><CR>
-
-" vim-redmine {{2
-if filereadable(expand('~/.vim/redmine.vim'))
-    source ~/.vim/redmine.vim
-endif
-
-" neocomplcache {{2
-let g:neocomplcache_enable_at_startup = 1
-
-" VimFiler {{2
-let g:vimfiler_as_default_explorer = 1
 
 " tags {
 set tags=tags;~/.tags
@@ -346,6 +325,9 @@ augroup END
 " caw {{2
 let g:caw_no_default_keymappings = 1
 map <silent> <Leader>cc <Plug>(caw:i:toggle)
+
+" terraform {{2
+let g:terraform_align=1
 
 " local settings {{{1
 if filereadable(expand('~/.local.vim'))

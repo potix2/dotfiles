@@ -20,8 +20,9 @@ ln -nsf ${WSDIR}/.tmux.conf $HOME/.tmux.conf
 ln -nsf ${WSDIR}/.gitconfig $HOME/.gitconfig
 ln -nsf ${HOME}/zsh-completions/src $HOME/.zsh.d
 
-if [ ! -d $HOME/.vim/pack/minpack/opt/minpac ];
+if [ ! -d "${HOME}/.vim/pack/minpac/opt/minpac" ];
 then
+    echo "check"
     git clone https://github.com/k-takata/minpac.git \
         ~/.vim/pack/minpac/opt/minpac
 fi
@@ -30,4 +31,14 @@ fi
 if [ ! -d "$HOME/.goenv" ];
 then
     git clone https://github.com/syndbg/goenv.git ~/.goenv
+fi
+
+# setup gh
+if ! [ -x "$(command -v gh)" ];
+then
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+    sudo apt-add-repository https://cli.github.com/packages
+    sudo apt update
+    sudo apt install gh
+    gh completion -s zsh > ~/.zsh.d/_gh
 fi

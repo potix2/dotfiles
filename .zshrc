@@ -118,9 +118,10 @@ if [ -d /usr/local/sbin ]; then
     path+=('/usr/local/sbin')
 fi
 
-if [ -d ${HOME}/.rbenv ]; then
-    path+=($HOME/.rbenv/bin)
-    eval "$(rbenv init -)"
+if [ -d ${HOME}/.goenv ]; then
+    path+=($HOME/.goenv/bin)
+    export GOENV_ROOT="$HOME/.goenv"
+    eval "$(goenv init -)"
 fi
 
 if [ -d ${HOME}/go/bin ]; then

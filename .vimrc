@@ -88,9 +88,7 @@ if exists('*minpac#init')
 
   " Additional plugins here.
   call minpac#add('vim-jp/syntax-vim-ex')
-  call minpac#add('thinca/vim-ref')
   call minpac#add('thinca/vim-quickrun')
-  call minpac#add('mattn/gist-vim')
   call minpac#add('mattn/webapi-vim')
   call minpac#add('Lokaltog/vim-easymotion')
   call minpac#add('tpope/vim-surround')
@@ -99,35 +97,24 @@ if exists('*minpac#init')
   call minpac#add('tpope/vim-endwise')
   call minpac#add('tpope/vim-dispatch')
   call minpac#add('tyru/restart.vim')
-  call minpac#add('tyru/caw.vim')
-  call minpac#add('tyru/open-browser.vim')
   call minpac#add('scrooloose/syntastic')
   call minpac#add('kana/vim-metarw')
   call minpac#add('kana/mduem')
-  call minpac#add('ujihisa/blogger.vim')
-  call minpac#add('ujihisa/neco-ghc')
   call minpac#add('hallison/vim-markdown')
   call minpac#add('eagletmt/ghcmod-vim')
   call minpac#add('jelera/vim-javascript-syntax')
   call minpac#add('mjbrownie/pythoncomplete.vim')
-  call minpac#add('derekwyatt/vim-scala')
   call minpac#add('fatih/vim-hclfmt')
   call minpac#add('fatih/vim-go')
   call minpac#add('alfredodeza/pytest.vim')
-  call minpac#add('neovimhaskell/haskell-vim')
   call minpac#add('whatyouhide/vim-gotham')
-  call minpac#add('vim-scripts/emmet.vim')
   call minpac#add('vim-scripts/sudo.vim')
   call minpac#add('vim-scripts/taglist.vim')
-  call minpac#add('vim-scripts/nginx.vim')
-  call minpac#add('vim-scripts/groovy.vim')
   call minpac#add('vim-scripts/sql.vim')
   call minpac#add('vim-scripts/matchit.zip')
   call minpac#add('itchyny/lightline.vim')
-  call minpac#add('lambdalisue/gina.vim')
   call minpac#add('google/vim-maktaba')
   call minpac#add('hashivim/vim-terraform')
-  call minpac#add('preservim/nerdtree')
 endif
 
 " Plugin settings here.
@@ -292,11 +279,6 @@ let g:quickrun_config['ruby.rspec'] = {
       \ 'command': 'rspec',
       \ }
 
-" blogger.vim {{2
-if filereadable(expand('~/.vim/blogger.vim'))
-    source ~/.vim/blogger.vim
-endif
-
 " gist {{2
 let g:gist_detect_filetype = 1
 if filereadable(expand('~/.vimrc.gist'))
@@ -316,15 +298,6 @@ augroup MyJsCmd
     autocmd!
     autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
 augroup end
-
-augroup MyGradle
-    autocmd!
-    autocmd BufWinEnter,BufNewFile *.gradle set filetype=groovy
-augroup END
-
-" caw {{2
-let g:caw_no_default_keymappings = 1
-map <silent> <Leader>cc <Plug>(caw:i:toggle)
 
 " terraform {{2
 let g:terraform_align=1
